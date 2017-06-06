@@ -4,7 +4,7 @@ original_data = load('dataset.txt');
 %Calculate the size of the original dataset.
 [rows, columns] = size(original_data);
 %Choose half of the original data
-select_num_rows = floor(rows * 0.3);
+select_num_rows = floor(rows * 0.1);
 %Randomly generate row indexes of original dataset
 random_rows = randperm(rows, select_num_rows);
 %Generate the random matric using the generated row indexes and the original dataset.

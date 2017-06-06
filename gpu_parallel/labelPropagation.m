@@ -5,20 +5,24 @@ num_unlabel_samples = size(Mat_Unlabel,1);
 num_samples = num_label_samples + num_unlabel_samples;
 labels_list = unique(labels);
 num_classes = length(labels_list);
-MatX = [Mat_Label; Mat_Unlabel];
-clamp_data_label = zeros(num_label_samples, num_classes, 'double');
+% MatX = [Mat_Label; Mat_Unlabel];
+MatX_G = gpuArray(single([Mat_Label; Mat_Unlabel]));
+clamp_data_label = gpuArray.zeros(num_label_samples, num_classes, 'single');
 for i = 1:num_label_samples
     clamp_data_label(i, labels(i)) = 1.0;
 end
-label_function = zeros(num_samples, num_classes, 'double');
-label_function_tmp = zeros(num_unlabel_samples, num_classes, 'double');
-label_function_tmp(:) = -1;
-label_function = [clamp_data_label;label_function_tmp];
+label_function = gpuArray.zeros(num_samples, num_classes, 'single');
+% label_function_tmp = gpuArray.zeros(num_unlabel_samples, num_classes, 'single');
+% label_function_tmp(:) = -1;
+% label_function = [clamp_data_label ; label_function_tmp];
+
+label_function(1: num_label_samples,:) = clamp_data_label;
+label_function(num_label_samples + 1: num_samples) = -1;
 % graph construction 
-affinity_matrix = buildGraph(MatX, knn_num_neighbors);
+affinity_matrix = gpuArray(buildGraph(MatX_G, knn_num_neighbors));
 % start to propagation  
 iter = 0;
-pre_label_function = zeros(num_samples, num_classes, 'double');
+pre_label_function = gpuArray.zeros(num_samples, num_classes, 'single');
 changed = sum(sum(abs(pre_label_function - label_function)));
 tol = 1e-10;
 % while (iter < max_iter && changed > tol)
@@ -36,7 +40,7 @@ while (iter < 100000)
     changed = sum(sum(abs(pre_label_function - label_function)));
 end
 % get terminate label of unlabeled data
-unlabel_data_labels = zeros(num_unlabel_samples,1);
+unlabel_data_labels = gpuArray.zeros(num_unlabel_samples, 1, 'single');
 for i = 1: num_unlabel_samples
     [~,max_index]=max(label_function(i+num_label_samples, :));
     unlabel_data_labels(i) = max_index;

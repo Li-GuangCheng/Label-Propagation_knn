@@ -1,9 +1,5 @@
 # Report of Parallel Label Propagation
-GuangCheng-Li 李光程
-16098537-II20-0016
-sky9475@live.com
-Faculty of Information Technology, Macau University of Science and Technology
-[https://sites.google.com/view/guangcheng/](https://sites.google.com/view/guangcheng/)
+GuangCheng-Li 李光程</br>16098537-II20-0016 </br>sky9475@live.com</br>Faculty of Information Technology, Macau University of Science and Technology</br>[https://sites.google.com/view/guangcheng/](https://sites.google.com/view/guangcheng/)
 
 ---
 ## 1. 实现方法
@@ -60,10 +56,10 @@ FIG. 2 与 FIG. 3分别展示了labeled数据占比分别设置为0.1与0.3的�
 *FIG. 5 迭代100000次并行算法所用时间*
 
 FIG. 4 与FIG. 5 分别展示了算法迭代100000次串行算法和并行算法分别所花费的时间。其中，串行算法耗时176.75s，并行算法耗时75.86s。因此，并行算法之加速比为R = T0/Tp = 176.75/75.86 = 2.323。
-##3. 参考与开源
-###3.1 参考
+## 3. 参考与开源
+### 3.1 参考
 在构建算法的过程中，我们参考了以下文档及其相关算法。
 Y. Zhang and Z.-H. Zhou. Non-metric label propagation. In: Proceedings of the 21st International Joint Conference on Artificial Intelligence (IJCAI'09), Pasadena, CA, 2009, pp.1357-1362.
 http://lamda.nju.edu.cn/code_NMLP.ashx
-###3.2 开源
+### 3.2 开源
 该算法在 Apache License 2.0 协议下开源至GitHub：[https://github.com/Li-GuangCheng/Label-Propagation_knn](https://github.com/Li-GuangCheng/Label-Propagation_knn)。

@@ -32,9 +32,10 @@ GPU: MSI GTX 1060 Gaming X 6GB @1784 MHz
 System: Microsoft Windows 10 Pro 10.0.15063.296
 Matlab: 2016a
 ### 2.2 功能测试
-为测试算法是否可正确运行，我们采用Aggregation数据集，并设置labeled的数据占比为0.3，迭代终止条件为while (iter < max_iter && changed > tol)，其中max_iter = 1000，tol = 1e-10，以验证算法正确性。由于串行与并行算法之逻辑相同，因此我们使用并行算法进行实验。实验结果如图1所示。
+为测试算法是否可正确运行，我们采用Aggregation数据集，并设置labeled的数据占比为0.3，迭代终止条件为while (iter < max_iter && changed > tol)，其中max_iter = 1000，tol = 1e-10，以验证算法正确性。由于串行与并行算法之逻辑相同，因此我们使用并行算法进行实验。实验结果如图1所示。从图中不难看出，我们的程序对数据的label正确性较高。
 
 ![](https://github.com/Li-GuangCheng/Label-Propagation_knn/raw/master/sim/LP_result.png)
+*FIG. 1 算法运行结果*
 ### 2.3 算法准确性
 在该实验中，我们使用GPU并行算法，并使用Aggregation数据集。将labeled的数据占比分别设置为0.1与0.3，并将迭代终止条件设置为 while changed > 0 ，分别观察数据结果与迭代次数。
 
@@ -59,6 +60,7 @@ FIG. 4 与FIG. 5 分别展示了算法迭代100000次串行算法和并行算法
 ## 3. 参考与开源
 ### 3.1 参考
 在构建算法的过程中，我们参考了以下文档及其相关算法。
+
 Y. Zhang and Z.-H. Zhou. Non-metric label propagation. In: Proceedings of the 21st International Joint Conference on Artificial Intelligence (IJCAI'09), Pasadena, CA, 2009, pp.1357-1362.
 http://lamda.nju.edu.cn/code_NMLP.ashx
 ### 3.2 开源
